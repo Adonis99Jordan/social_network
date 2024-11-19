@@ -1,19 +1,17 @@
 import express from 'express';
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
+// import apiRoutes from "./routes/index"
 import connection from './config/connection.js';
-import typeDefs from './schema/typeDefs.js';
-import resolvers from './schema/resolvers.js';
+import router from './routes/index.js';
+// import Thought from './models/Thought.js';
+// import Thought from "./models/Thought";
+import { thoughtRouter } from './routes/thoughts.js';
 const app = express();
 const PORT = process.env.PORT || 3333;
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-});
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(router);
+app.use(thoughtRouter);
 connection.once('open', async () => {
-    await server.start();
-    // Middleware
-    app.use('/graphql', express.json(), expressMiddleware(server));
     app.listen(PORT, () => {
         console.log('Express server started on', PORT);
     });
