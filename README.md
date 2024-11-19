@@ -56,6 +56,9 @@ The Following are the main API endpoints provided by the back end:
 - `POST /api/thoughts/:id/reactions`: Add a reaction to a thought
 - `DELETE /api/thoughts/:id/reactions/:reactionId`: Delete a reaction from a thought
 
+## Example:
+[https://drive.google.com/file/d/1RB0LV01OEdRM-34FuFpqVn45t8hH8ef0/view]
+
 ## Technologies used 
 - Node.js
 - Express.js
